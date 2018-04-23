@@ -8,17 +8,17 @@ namespace Lab8
         static Random random = new Random();
         static void Main(string[] args)
         {
-            BinaryTree binaryTree = new BinaryTree(random.Next(0, 500));
+            BinaryTree binaryTree = new BinaryTree(random.Next(0, 10));
             for(int i = 0; i < 99; i++)
             {
-                binaryTree.Add(random.Next(0, 200));
+                binaryTree.Add(random.Next(0, 10));
             }
             Console.Write("Введите число, которое надо найти в дереве: ");
             int value = int.Parse(Console.ReadLine());
             BinaryTree.TreeNode treeNode = binaryTree.Find(value);
             if (treeNode != null)
             {
-                Console.WriteLine(treeNode.Count);
+                Console.WriteLine("Число повторений числа " + value + ": " + treeNode.Count);
                 Console.ReadLine();
             }
             else
