@@ -11,7 +11,7 @@ namespace Lab8
             BinaryTree binaryTree = new BinaryTree(random.Next(0, 10));
             for(int i = 0; i < 99; i++)
             {
-                binaryTree.Add(random.Next(0, 10));
+                binaryTree.Add(random.Next(0, 15));
             }
             Console.Write("Введите число, которое надо найти в дереве: ");
             int value = int.Parse(Console.ReadLine());
@@ -23,7 +23,7 @@ namespace Lab8
             }
             else
             {
-                Console.WriteLine(binaryTree.Path.ToString());
+                Console.WriteLine("Возможный путь до числа " + value + " :" + binaryTree.Path.ToString());
                 Console.ReadLine();
             }
         }
@@ -41,7 +41,7 @@ namespace Lab8
             public TreeNode(int value)
             {
                 Value = value;
-                Count = 1;//метод для проверки кол-ва одинаковых элементов и логику для 
+                Count = 1;
                 LeftTreeNode = null;
                 RightTreeNode = null;
             }
@@ -49,7 +49,6 @@ namespace Lab8
 
         public TreeNode Root { get; set; }
         public StringBuilder Path { get; set; }
-        //public TreeNode Node { get; set; }
 
         public BinaryTree()
         {
@@ -63,7 +62,7 @@ namespace Lab8
             Path = new StringBuilder("");
         }
 
-        public void Add(int value)//проверить на работоспособность
+        public void Add(int value)
         {
             if(Root == null)
             {
@@ -72,7 +71,6 @@ namespace Lab8
             }
 
             TreeNode temp = Root;
-            bool b = false;
             do
             {
                 if (value == temp.Value)
@@ -85,13 +83,12 @@ namespace Lab8
                     if (temp.RightTreeNode == null)
                     {
                         temp.RightTreeNode = new TreeNode(value);
-                        b = true;
-                        //return;
+                        return;
                     }
                     else
                     {
                         temp = temp.RightTreeNode;
-                        //continue;
+                        continue;
                     }
                 }
                 if (value < temp.Value)//если меньше то влево
@@ -99,24 +96,21 @@ namespace Lab8
                     if (temp.LeftTreeNode == null)
                     {
                         temp.LeftTreeNode = new TreeNode(value);
-                        b = true;
-                        //return;
+                        return;
                     }
                     else
                     {
                         temp = temp.LeftTreeNode;
-                        //continue;
+                        continue;
                     }
                 }
             }
-            while (!b);
+            while (true);
         }
 
         public TreeNode Find(int value)
         {
-            TreeNode res = null;
             TreeNode temp = Root;
-            bool b = false;
             do
             {
                 if (temp == null)
@@ -148,8 +142,7 @@ namespace Lab8
                     continue;
                 }
             }
-            while (!b);
-            return res;
+            while (true);
         }
     }
 }
